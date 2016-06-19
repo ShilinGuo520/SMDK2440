@@ -4,7 +4,11 @@ LD	:=$(ARM_CC)-ld
 OBJDUMP	:=$(ARM_CC)-objdump
 GCC	:=$(ARM_CC)-gcc
 
-leds.bin:head.o main.o
+
+OBJ +=head.o
+OBJ +=main.o
+
+leds.bin:$(OBJ)
 	$(LD) -Tsmdk2440.lds -o leds.elf $^
 	$(OBJCOPY) -O binary -S leds.elf $@
 	$(OBJDUMP) -D -m arm leds.elf > leds.dis
