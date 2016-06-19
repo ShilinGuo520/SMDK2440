@@ -1,14 +1,14 @@
 
-#define GPBCON (*(volatile unsigned long *)0x56000050) // 物理地址0x56000010
-#define GPBDAT (*(volatile unsigned long *)0x56000054) // 物理地址0x56000014
+#define GPFCON (*(volatile unsigned long *)0x56000050) // 物理地址0x56000010
+#define GPFDAT (*(volatile unsigned long *)0x56000054) // 物理地址0x56000014
 
 /*
  * LED1,LED2,LED4对应GPB5、GPB6、GPB7、GPB8
  */
-#define    GPB5_out    (1<<(4*2))
-#define    GPB6_out    (1<<(5*2))
-#define    GPB7_out    (1<<(6*2))
-#define    GPB8_out    (1<<(7*2))
+#define    GPF5_out    (1<<(4*2))
+#define    GPF6_out    (1<<(5*2))
+#define    GPF7_out    (1<<(6*2))
+#define    GPF8_out    (1<<(7*2))
 
 /*
  * wait函数加上“static inline”是有原因的，
@@ -27,12 +27,12 @@ void wait(volatile unsigned long dly)
 int main(void)
 {
     // LED1,LED2,LED3,LED4对应的4根引脚设为输出
-    GPBCON = GPB5_out | GPB6_out | GPB7_out | GPB8_out;
+    GPFCON = GPF5_out | GPF6_out | GPF7_out | GPF8_out;
     while(1){
 	wait(10000);
-        GPBDAT = 0x0;         // 根据i的值，点亮LED1,2,3,4
+        GPFDAT = 0x0;         // 根据i的值，点亮LED1,2,3,4
 	wait(10000);
-	GPBDAT = 0xffff;
+	GPFDAT = 0xffff;
     }
     return 0;
 }
