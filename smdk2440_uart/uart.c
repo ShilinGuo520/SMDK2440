@@ -23,3 +23,22 @@ unsigned char getc(void)
 	c=URXH0;
 	return c;
 }
+
+unsigned char echo(void)
+{
+        unsigned char c;
+        while(!(UTRSTAT0&(1<<0)));//查询是否接收到有效数据 
+        c=URXH0;
+	if(c == 13) {
+	    putc(10);
+	    putc(c);
+	}
+	else if(c == 8) {
+	    putc(c);
+            putc(' ');
+	    putc(c);
+	}
+	else
+            putc(c);
+        return c;
+}

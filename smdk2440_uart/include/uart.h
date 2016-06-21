@@ -18,5 +18,6 @@
 void Uart0_Init();
 void putc(unsigned char c); 
 unsigned char getc(void);
+unsigned char echo(void);
 
 #endif
