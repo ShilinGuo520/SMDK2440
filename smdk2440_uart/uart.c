@@ -1,7 +1,7 @@
 #include "uart.h"
 
-#define PCLK 50000000 
-#define UART_BRD (int)((PCLK/( 115200 * 16))-1) 
+#define PCLK 100000000 
+#define UART_BRD (int)((PCLK/( 9600 * 16))-1) 
 
 #define GPHCON 	(*(volatile unsigned long *)0x56000070)
 #define GPHUP	(*(volatile unsigned long *)0x56000078)
@@ -24,7 +24,7 @@ void Uart0_Init(unsigned int baudrate)
 	GPHUP=0x00;//上拉电阻使能 
 	ULCON0|=0x03;//设置数据发送格式：8个数据位，1个停止位，无校验位
 	UCON0=0x05; //发送模式和接收模式都使用查询模式 
-	UBRDIV0=UART_BRD;//设置波特率，其中波特率作为一个参数传递到该初始化函 数 
+	UBRDIV0 = UART_BRD;//设置波特率，其中波特率作为一个参数传递到该初始化函 数 
 	URXH0=0;//将URXH0清零
 } 
 
@@ -35,7 +35,7 @@ void Uart0_Init(unsigned int baudrate)
 *功能：将通过串口接收到的字符发送给PC机并显示在
 * 串口调试工具。 
 ************************************************/
-void putc(unsigned char c){
+void _putc(unsigned char c){
 	UTXH0=c; 
 	while(!(UTRSTAT0&(1<<2)));//等待发送完成 
 } 

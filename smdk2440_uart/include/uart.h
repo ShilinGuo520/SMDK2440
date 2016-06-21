@@ -17,7 +17,7 @@ void Uart0_Init(unsigned int baudrate);
 *功 能：将通过串口接收到的字符发送给PC机并显示在
 *串口调试工具。 
 ************************************************/
-void putc(unsigned char c); 
+void _putc(unsigned char c); 
 
 /***********************************************
 *函数名称：unsignedchargetc(void)
