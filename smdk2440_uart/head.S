@@ -3,7 +3,7 @@
 # define INTMSK		0x4A000008	/* Interupt-Controller base addresses */
 # define INTSUBMSK	0x4A00001C
 # define CLKDIVN	0x4C000014	/* clock divisor register */
-
+# define MPLLCON	0x4C000004	/* MPLL configuration register */
 
 .text
 .global _start
@@ -29,7 +29,7 @@ _start:
 
     /* default FCLK is 400 MHz ! */
     ldr     R0, =0x0005C011
-    ldr     R1, =0x4C000004
+    ldr     R1, =MPLLCON
     str     R0,[R1]
 
     ldr SP,=1024*4
