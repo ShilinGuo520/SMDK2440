@@ -22,9 +22,9 @@ _start:
     ldr	r0, =INTSUBMSK
     str	r1, [r0]
 
-    /* FCLK:HCLK:PCLK = 1:4:8 */
+    /* FCLK:HCLK:PCLK = 1:4:4 */
     ldr r0, =CLKDIVN
-    mov r1, #5
+    mov r1, #4
     str r1, [r0]
 
     /* default FCLK is 400 MHz ! */
