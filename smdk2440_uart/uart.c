@@ -11,11 +11,19 @@ void Uart0_Init()
 	URXH0=0;//将URXH0清零
 } 
 
-void putc(unsigned char c){
+void putc(unsigned char c)
+{
 	UTXH0=c; 
 	while(!(UTRSTAT0&(1<<2)));//等待发送完成 
 }
- 
+
+void puts(unsigned char *s)  
+{
+	while(*s != 0) 
+		putc(*s++);
+}
+
+
 unsigned char getc(void)
 { 
 	unsigned char c; 
