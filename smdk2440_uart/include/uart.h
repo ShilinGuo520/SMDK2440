@@ -1,31 +1,22 @@
 #ifndef __UART_H__
 #define __UART_H__ 
-/***********************************************
-*函数名称：voidUart0_Init(unsignedintbaudrate)
-*参数说明：baudrate：波特率
-*返回值：无
-*全局变量:无
-*功 能：对UART0进行初始化 
-************************************************/
-void Uart0_Init(unsigned int baudrate);
 
-/***********************************************
-*函数名称：voidputc(unsignedcharc) 
-*参数说明：c:通过串口接收到的字符，注意这里是8位数据
-*返回值：无
-*全局变量:无
-*功 能：将通过串口接收到的字符发送给PC机并显示在
-*串口调试工具。 
-************************************************/
-void _putc(unsigned char c); 
+#define PCLK            100000000 
+#define baudrate        9600
+#define UART_BRD ((PCLK/( baudrate * 16))-1) 
 
-/***********************************************
-*函数名称：unsignedchargetc(void)
-*参数说明：无 
-*返回值：c:通过串口接收到的字符，注意这里是8位数据
-*全局变量:无
-*功 能：接收并保存通过串口输入的数据 
-************************************************/
+#define GPHCON  (*(volatile unsigned long *)0x56000070)
+#define GPHUP   (*(volatile unsigned long *)0x56000078)
+
+#define ULCON0  (*(volatile unsigned long *)0x50000000)
+#define UCON0   (*(volatile unsigned long *)0x50000004)
+#define UBRDIV0 (*(volatile unsigned long *)0x50000028)
+#define URXH0   (*(volatile unsigned long *)0x50000024)
+#define UTXH0   (*(volatile unsigned long *)0x50000020)
+#define UTRSTAT0   (*(volatile unsigned long *)0x50000010)
+
+void Uart0_Init();
+void putc(unsigned char c); 
 unsigned char getc(void);
 
 #endif
