@@ -1,5 +1,7 @@
 #include "leds.h"
 #include "uart.h"
+#include <string.h>
+
 
 void wait(volatile unsigned long dly)
 {
@@ -12,7 +14,6 @@ unsigned int st;
 int main(void)
 {
     unsigned char num;
-    // LED1,LED2,LED3,LED4对应的4根引脚设为输出
     GPFCON = GPF5_out | GPF6_out | GPF7_out | GPF8_out;
     Uart0_Init();
 
@@ -23,12 +24,13 @@ int main(void)
     st = 0;
 
     while(1) {
-	num = echo();
-	cmd[st++] = num;
-	if(num == 13) {
-	    puts("miniboot:");
-   	    st = 0;
-  	}
+		num = echo();
+		cmd[st++] = num;
+		if(num == 13) {
+	    	puts("miniboot:");
+   	    	st = 0;
+			memset(cmd, 0, 24);
+  		}
     }
     return 0;
 }
