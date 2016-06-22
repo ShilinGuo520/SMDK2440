@@ -33,6 +33,9 @@ _start:
     str     R0,[R1]
 
     ldr SP,=1024*4
+
+	bl lowlevel_init
+
     bl main
 
 halt_loop:

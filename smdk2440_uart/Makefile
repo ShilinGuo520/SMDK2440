@@ -10,6 +10,7 @@ TARGET = main.bin
 OBJ +=head.o
 OBJ +=main.o
 OBJ +=uart.o
+OBJ +=lowlevel_init.o
 
 CFLAGS += -I ./include/
 
