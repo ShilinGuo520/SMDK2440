@@ -22,3 +22,17 @@ void mem_test()
 }
 
 
+void code_to_mem()
+{
+	unsigned char *flash, *sdram;
+	long st;
+	flash = 0x0;
+	sdram = 0x30000000;
+
+	for(st = 0; st < 0x20000; st++) {
+		*sdram = *flash;
+		sdram++;
+		flash++;
+	}
+}
+
