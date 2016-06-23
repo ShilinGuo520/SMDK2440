@@ -1,6 +1,5 @@
 #include "leds.h"
 #include "uart.h"
-#include <string.h>
 
 
 void wait(volatile unsigned long dly)
@@ -16,6 +15,8 @@ int main(void)
     unsigned char num;
     GPFCON = GPF5_out | GPF6_out | GPF7_out | GPF8_out;
     Uart0_Init();
+
+	mem_test();
 
     puts("Init mini boot.\n\r");
     puts("version 0.0.0.1\n\r");

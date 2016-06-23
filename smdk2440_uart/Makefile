@@ -11,6 +11,7 @@ OBJ +=head.o
 OBJ +=main.o
 OBJ +=uart.o
 OBJ +=lowlevel_init.o
+OBJ +=sdram.o
 
 CFLAGS += -I ./include/
 
