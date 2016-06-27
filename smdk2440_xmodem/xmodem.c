@@ -1,9 +1,11 @@
 
-#define SOH 01H
-#define EOT 04H
-#define ACK 06H
-#define NAK 15H
-#define CAN 18H
+#include "uart.h"
+
+#define SOH 0x01
+#define EOT 0x04
+#define ACK 0x06
+#define NAK 0x15
+#define CAN 0x18
 
 
 void Xmodem(unsigned char * buff)
@@ -13,14 +15,14 @@ void Xmodem(unsigned char * buff)
 	unsigned char rx_buff[128];
 	int time;
 	int i;
-	if(!(UTRSTAT0&(1<<0)))
-		putc(NAK);
+		
+	putc(NAK);
 
 	while(1) {
 		time ++ ;
-		if(URXH0 == SOH)
+		if(getc() == SOH)
 			break;
-		if(time > 30000){
+		if(time > 3000){
 			putc(NAK);
 			time = 0;
 		}
