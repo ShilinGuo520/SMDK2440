@@ -26,8 +26,12 @@ void puts(unsigned char *s)
 
 unsigned char getc(void)
 { 
+	int time_out;
 	unsigned char c; 
-	while(!(UTRSTAT0&(1<<0)));//查询是否接收到有效数据 
+	while(!(UTRSTAT0&(1<<0))) {
+		if((time_out++) > 3000)
+			return -1;
+	}//查询是否接收到有效数据 
 	c=URXH0;
 	return c;
 }
