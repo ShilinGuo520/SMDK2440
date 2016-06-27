@@ -8,7 +8,7 @@
 #define CAN 0x18
 
 
-void Xmodem(unsigned char * buff)
+void Xmodem_test()
 {
 	unsigned char rx_num;
 	unsigned char rx_num_blk;
